@@ -1,0 +1,38 @@
+# Dependencies
+node_modules
+/.pnp
+.pnp.loglite
+
+# Environment variables
+.env
+
+# Next.js build output
+.next/
+out/
+
+# Backend
+backend/node_modules
+
+# IDE
+.vscode/
+*.code-workspace
+
+# MongoDB
+*.db
+*.sqlite
+
+# Swap
+swapfile.swi
+
+# Logs
+logs/
+*.log
+
+# Coverage
+coverage/
+
+# Debug
+/.dbg
+
+# Environment example (copy to .env)
+.env.example$
