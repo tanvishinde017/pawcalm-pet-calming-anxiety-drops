@@ -1,0 +1,100 @@
+ [33m[1m⚠[22m[39m Compiled with warnings
+
+./app/contact/page.js
+Attempted import error: 'AiOutlineLocation' is not exported from '__barrel_optimize__?names=AiFillSend,AiOutlineLocation,AiOutlineMail,AiOutlinePhone!=!react-icons/ai' (imported as 'AiOutlineLocation').
+
+Import trace for requested module:
+./app/contact/page.js
+
+./app/contact/page.js
+Attempted import error: 'AiOutlineLocation' is not exported from '__barrel_optimize__?names=AiFillSend,AiOutlineLocation,AiOutlineMail,AiOutlinePhone!=!react-icons/ai' (imported as 'AiOutlineLocation').
+
+Import trace for requested module:
+./app/contact/page.js
+
+ReferenceError: useState is not defined
+    at ProductsPage (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\.next\server\app\products\page.js:1:2110)
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:38654)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:54802)
+    at nw (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:38210)
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:38805)
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:51944)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:54802)
+    at nR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:57452)
+    at nE (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:56859)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:55048)
+
+Error occurred prerendering page "/products". Read more: https://nextjs.org/docs/messages/prerender-error
+ReferenceError: useState is not defined
+    at ProductsPage (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\.next\server\app\products\page.js:1:2110)
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:38654)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:54802)
+    at nw (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:38210)
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:38805)
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:51944)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:54802)
+    at nR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:57452)
+    at nE (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:56859)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:55048)
+Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:51980)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:54802)
+    at nR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:57452)
+    at nE (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:56859)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:55048)
+    at nR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:57452)
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:49214)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:54802)
+    at nR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:57452)
+    at nE (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:56859)
+
+Error occurred prerendering page "/contact". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:51980)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:54802)
+    at nR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:57452)
+    at nE (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:56859)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:55048)
+    at nR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:57452)
+    at nk (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:49214)
+    at nC (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:54802)
+    at nR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:57452)
+    at nE (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:28:56859)
+Error: Unsupported Server Component type: {...}
+    at em (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:11158)
+    at c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:22148
+    at Array.toJSON (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:25726)
+    at stringify (<anonymous>)
+    at eE (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:14115)
+    at eR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:14558)
+    at Timeout._onTimeout (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:11338)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+Error: Unsupported Server Component type: {...}
+    at em (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:11158)
+    at c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:22148
+    at Array.toJSON (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:25726)
+    at stringify (<anonymous>)
+    at eE (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:14115)
+    at eR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:14558)
+    at Timeout._onTimeout (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:11338)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+
+Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Unsupported Server Component type: {...}
+    at em (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:11158)
+    at c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:22148
+    at Array.toJSON (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:25726)
+    at stringify (<anonymous>)
+    at eE (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:14115)
+    at eR (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:14558)
+    at Timeout._onTimeout (c:\Users\Tanavi\OneDrive\Desktop\pet-calming-anxiety-drops\frontend\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:76:11338)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+
+> Export encountered errors on following paths:
+	/contact/page: /contact
+	/page: /
+	/products/page: /products
+[?25h
