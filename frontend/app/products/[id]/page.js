@@ -1,37 +1,41 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+'use client';
 
-export default function ProductDetailPage() {
-  const router = useRouter()
-  const { id } = router.params
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { FaHeart } from 'react-icons/fa';
+
+export default function ProductDetailPage({ params }) {
+  const router = useRouter();
+  const { id } = params;
 
   if (!id) {
     return <p className="text-red-600">Product not found</p>
   }
 
-  const [product, setProduct] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`/api/products/${id}`)
-      .then(res => {
+      .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch product');
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         setProduct(data.data);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
-  }, [id])
+  }, [id]);
 
   if (loading) return <SkeletonDetail />;
-  if (error) return <ErrorState message={error} retry={true} backPath="/products" />;
+  if (error) return <ErrorState message={error.message} backPath="/products" router={router} />;
 
   return (
     <section className="py-20 bg-white">
@@ -55,7 +59,7 @@ export default function ProductDetailPage() {
               <span className="text-gray-500 text-sm">({product.numReviews} reviews)</span>
             </div>
             <p className="text-gray-600 text-lg mb-6">{product.description}</p>
-            
+
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="p-4 rounded-xl bg-green-50">
                 <p className="text-sm text-gray-500">Price</p>
@@ -63,7 +67,9 @@ export default function ProductDetailPage() {
               </div>
               <div className="p-4 rounded-xl bg-gray-50">
                 <p className="text-sm text-gray-500">Stock</p>
-                <p className={product.stock > 0 ? 'text-green-600' : 'text-red-600'}>{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</p>
+                <p className={product.stock > 0 ? 'text-green-600' : 'text-red-600'}>
+                  {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+                </p>
               </div>
             </div>
 
@@ -103,13 +109,12 @@ const SkeletonDetail = () => {
   );
 };
 
-const ErrorState = ({ message, retry, backPath }) => {
-  const navigate = useNavigate();
+const ErrorState = ({ message, backPath, router }) => {
   return (
     <div className="py-12 text-center">
       <p className="text-red-600">{message}</p>
-      <button 
-        onClick={() => navigate(backPath)} 
+      <button
+        onClick={() => router.push(backPath)}
         className="mt-4 px-6 py-2 rounded bg-green-600 text-white">
         Go Back
       </button>
