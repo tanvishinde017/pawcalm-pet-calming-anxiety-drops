@@ -20,7 +20,7 @@ export default function CartPage() {
         <div className="mb-10">
           <h1 className="text-4xl font-bold mb-2">Your Cart</h1>
           <p className="text-gray-600">
-            Review your items before checkout. Shipping and taxes calculated at checkout.
+            Review your items before checkout. Shipping and taxes are calculated at checkout.
           </p>
         </div>
 
@@ -28,6 +28,13 @@ export default function CartPage() {
           <div className="text-center py-24">
             <p className="text-gray-600 text-lg mb-6">Your cart is empty.</p>
             <Link
+              href="/products"
+              className="px-8 py-3 rounded-xl bg-green-600 text-white font-medium hover:bg-green-700 transition-colors"
+            >
+              Shop Now
+            </Link>
+          </div>
+        ) : (
           <div className="grid lg:grid-cols-4 gap-8">
             <div className="lg:col-span-3 space-y-6">
               {items.map((item) => (
@@ -129,10 +136,3 @@ export default function CartPage() {
   );
 }
 
-              href="/products"
-              className="px-8 py-3 rounded-xl bg-green-600 text-white font-medium hover:bg-green-700 transition-colors"
-            >
-              Continue Shopping
-            </Link>
-          </div>
-        ) : (

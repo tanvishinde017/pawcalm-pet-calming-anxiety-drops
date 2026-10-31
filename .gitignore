@@ -41,3 +41,10 @@ coverage/
 
 # Environment example (copy to .env)
 .env.example$
+# Local MongoDB files
+mongodb_win/
+mongodb.zip
+mongo_job.out
+mongodb.err
+mongodb.out
+start-mongo.ps1

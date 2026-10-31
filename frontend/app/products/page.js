@@ -35,6 +35,8 @@ export default function ProductsPage() {
       });
   }, [category]);
 
+  const filtered = category === 'all' ? products : products.filter((p) => p.category === category);
+
   if (loading) {
     return (
       <section className="py-20 bg-gray-50">
@@ -51,28 +53,6 @@ export default function ProductsPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-6">Shop All Products</h1>
-        {filtered.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-gray-600 text-lg mb-6">No products found in this category.</p>
-            <button
-              onClick={() => setCategory('all')}
-              className="px-6 py-2 rounded-xl bg-green-600 text-white font-medium hover:bg-green-700 transition-colors"
-            >
-              View All Products
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filtered.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
-
           <p className="text-red-600 mb-6">Unable to load products: {error}</p>
           <p className="text-sm text-gray-500">
             Make sure the backend server is running on port 4000 and NEXT_PUBLIC_API_URL is set.
@@ -87,8 +67,6 @@ export default function ProductsPage() {
       </section>
     );
   }
-
-  const filtered = category === 'all' ? products : products.filter((p) => p.category === category);
 
   return (
     <section className="py-20 bg-gray-50">
@@ -116,3 +94,24 @@ export default function ProductsPage() {
             ))}
           </div>
         </div>
+        {filtered.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-gray-600 text-lg mb-6">No products found in this category.</p>
+            <button
+              onClick={() => setCategory('all')}
+              className="px-6 py-2 rounded-xl bg-green-600 text-white font-medium hover:bg-green-700 transition-colors"
+            >
+              View All Products
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filtered.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}

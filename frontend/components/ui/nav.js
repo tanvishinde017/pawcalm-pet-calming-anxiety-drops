@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { FaBars, FaXmark, FaPaw, FaShoppingCart } from 'react-icons/fa';
+import { FaBars, FaTimes, FaPaw, FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '@/components/CartProvider';
 
 export const Nav = () => {
@@ -91,7 +91,7 @@ export const Nav = () => {
             className="absolute top-8 right-8 p-2 rounded-md hover:bg-gray-100 text-gray-600"
             aria-label="Close menu"
           >
-            <FaXmark className="w-6 h-6" />
+            <FaTimes className="w-6 h-6" />
           </button>
         </div>
       )}
