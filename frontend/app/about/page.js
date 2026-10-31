@@ -31,11 +31,12 @@ export default function AboutPage() {
             </ul>
           </div>
           <Image
-            src="/images/about-dog.jpg"
+            src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=700&q=80&fm=jpg"
             alt="Happy dog enjoying calm moments"
-            width={600}
-            height={400}
-            className="rounded-2xl object-cover"
+            width={700}
+            height={500}
+            className="rounded-2xl object-cover shadow-lg"
+            sizes="(max-width: 768px) 100vw, 400px"
           />
         </div>
 

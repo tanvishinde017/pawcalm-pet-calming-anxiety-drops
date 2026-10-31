@@ -15,7 +15,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
+app.use(cors({ origin: process.env.CORS_ORIGIN || true }));
 app.use(morgan('dev'));
 
 // Routes

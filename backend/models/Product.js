@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     required: [true, 'Product category is required'],
-    enum: ['calming-drops', 'anxiety-relief, treats, toys, accessories'],
+    enum: ['calming-drops', 'treats', 'toys', 'accessories'],
     default: 'calming-drops',
   },
   image: {
@@ -50,6 +50,15 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  reviews: [
+    {
+      user: mongoose.Schema.Types.ObjectId,
+      name: String,
+      rating: Number,
+      comment: String,
+      date: { type: Date, default: Date.now },
+    },
+  ],
   isFeatured: {
     type: Boolean,
     default: false,
