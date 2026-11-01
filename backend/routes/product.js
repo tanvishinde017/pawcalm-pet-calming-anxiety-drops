@@ -24,43 +24,93 @@ router.use((req, res, next) => {
   next();
 });
 
+// GET helpers
+const parseIntQuery = (req, key, defaultVal) => {
+  const val = req.query[key];
+  return val !== undefined ? Math.max(0, parseInt(val, 10)) : defaultVal;
+};
+
+const parseFloatQuery = (req, key, defaultVal) => {
+  const val = req.query[key];
+  return val !== undefined ? Math.max(0, parseFloat(val)) : defaultVal;
+};
+
 // @route   GET /api/products
-// @desc    Get all products with optional filtering
+// @desc    Get all products with filtering, sorting and pagination
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const { category, featured, minPrice, maxPrice, search } = req.query;
-    let filter = {};
+    // Pagination
+    const page = parseIntQuery(req, 'page', 1);
+    const limit = parseIntQuery(req, 'limit', 20);
+    const skip = (page - 1) * limit;
 
-    if (category) {
-      filter.category = category;
+    // Filtering
+    const filter = {};
+
+    // Category filter
+    if (req.query.category) {
+      filter.category = req.query.category;
     }
 
-    if (featured !== undefined) {
-      filter.isFeatured = featured === 'true';
+    // Brand filter
+    if (req.query.brand) {
+      filter.brand = req.query.brand;
     }
 
-    if (minPrice || maxPrice) {
+    // Price range filter
+    const minPrice = parseFloatQuery(req, 'minPrice', 0);
+    const maxPrice = parseFloatQuery(req, 'maxPrice', Infinity);
+    if (minPrice >= 0 || maxPrice > 0) {
       filter.price = {};
-      if (minPrice) filter.price.$gte = Number(minPrice);
-      if (maxPrice) filter.price.$lte = Number(maxPrice);
+      if (minPrice > 0) filter.price.$gte = minPrice;
+      if (maxPrice < Infinity) filter.price.$lte = maxPrice;
     }
 
-    if (search) {
+    // Search filter
+    if (req.query.search) {
       filter.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { description: { $regex: search, $options: 'i' } },
+        { name: { $regex: req.query.search, $options: 'i' } },
+        { description: { $regex: req.query.search, $options: 'i' } },
       ];
     }
 
+    // Sorting
+    let sort = {};
+    if (req.query.sortBy) {
+      if (req.query.sortBy === 'price-asc') {
+        sort = { price: 1 };
+      } else if (req.query.sortBy === 'price-desc') {
+        sort = { price: -1 };
+      } else if (req.query.sortBy === 'newest') {
+        sort = { dateCreated: -1 };
+      } else if (req.query.sortBy === 'name-asc') {
+        sort = { name: 1 };
+      } else if (req.query.sortBy === 'name-desc') {
+        sort = { name: -1 };
+      }
+    } else {
+      sort = { isFeatured: -1, dateCreated: -1 };
+    }
+
+    // Execute query with pagination
     const products = await Product.find(filter)
-      .sort({ isFeatured: -1, dateCreated: -1 })
-      .limit(50);
+      .sort(sort)
+      .skip(skip)
+      .limit(limit)
+      .lean();
+
+    // Get total count for pagination metadata
+    const total = await Product.countDocuments(filter);
 
     res.json({
       success: true,
-      count: products.length,
       data: products,
+      pagination: {
+        page,
+        pages: Math.ceil(total / limit),
+        total,
+      },
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -206,6 +256,47 @@ router.post('/:id/reviews', async (req, res) => {
     res.status(201).json({
       success: true,
       data: product,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// @route   GET /api/categories
+// @desc    Get all categories
+// @access  Public
+router.get('/categories', async (req, res) => {
+  try {
+    const categories = await Category.find().sort({ name: 1 });
+    res.json({
+      success: true,
+      data: categories,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// @route   GET /api/brands
+// @desc    Get all brands
+// @access  Public
+router.get('/brands', async (req, res) => {
+  try {
+    const brands = [
+      'Drools',
+      'Pedigree',
+      'Royal Canin',
+      'Farmina N&D',
+      'Himalaya PET',
+      'Wiggles',
+      'Heads Up For Tails',
+      'Purepet',
+      'Whiskas',
+      'Me-O',
+    ];
+    res.json({
+      success: true,
+      data: brands,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

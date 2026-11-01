@@ -8,6 +8,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const productRoutes = require('./routes/product');
 const contactRoutes = require('./routes/contact');
+const userRoutes = require('./routes/user');
+const { auth, admin } = require('./middleware/auth');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -21,6 +23,16 @@ app.use(morgan('dev'));
 // Routes
 app.use('/api/products', productRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/users', userRoutes); // Auth routes
+
+// Protected routes - require authentication
+app.use('/api/cart', auth, require('./routes/cart'));
+app.use('/api/orders', auth, require('./routes/orders'));
+
+// Admin-only routes
+app.use('/api/admin/products', auth, admin, require('./routes/admin/products'));
+app.use('/api/admin/orders', auth, admin, require('./routes/admin/orders'));
+app.use('/api/admin/users', auth, admin, require('./routes/admin/users'));
 
 // 404 handler for API
 app.use('/api/*', (req, res) => {

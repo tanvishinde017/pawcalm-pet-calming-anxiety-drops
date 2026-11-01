@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaStar } from 'react-icons/fa';
+import { formatCurrency, calculateDiscountPercentage } from '@/app/lib/formatCurrency';
 
 // DB image paths (e.g. /images/calming-salmon.jpg) don't exist locally, so we map
 // products to real pet photos from Unsplash deterministically by product name.
@@ -26,6 +27,12 @@ export const ProductCard = ({ product }) => {
       ? product.image
       : pickImage(product.name);
 
+  const discount = calculateDiscountPercentage(product.mrp, product.price);
+  const formattedPrice = formatCurrency(product.price);
+  const formattedMRP = formatCurrency(product.mrp);
+  const discountClass = discount > 0 ? 'bg-green-100 text-green-800' : 'hidden';
+  const discountBadge = discount > 0 ? <span className="text-green-600 text-xs font-medium uppercase tracking-wider">Save {discount}%</span> : null;
+
   return (
     <Link href={`/products/${product._id}`} className="block">
       <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
@@ -43,8 +50,9 @@ export const ProductCard = ({ product }) => {
             </span>
           )}
           <span className="absolute top-3 right-3 px-2 py-1 bg-gray-900/80 text-white text-xs font-bold rounded">
-            ${product.price.toFixed(2)}
+            {formattedPrice}
           </span>
+          {discountBadge}
         </div>
         <div className="p-5">
           <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-2">{product.name}</h3>
@@ -54,7 +62,14 @@ export const ProductCard = ({ product }) => {
               <FaStar className="w-3 h-3 text-yellow-400" />
               <span className="font-medium text-gray-700">{product.rating.toFixed(1)}</span>
             </div>
-            <span className="text-green-600 font-bold">{product.stock > 0 ? 'In stock' : 'Out of stock'}</span>
+            <div className="flex items-center gap-2">
+              <span className="text-green-600 font-bold">{product.stock > 0 ? 'In stock' : 'Out of stock'}</span>
+              {discount > 0 && (
+                <span className="text-green-600 text-xs font-medium line-clamp-2">
+                  {formattedMRP} MRP
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>
