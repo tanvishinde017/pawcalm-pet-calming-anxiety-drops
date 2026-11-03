@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useCart } from '@/components/CartProvider';
+import { formatCurrency } from '@/app/lib/formatCurrency';
 
 export default function CheckoutPage() {
   const { itemCount, total } = useCart();
@@ -29,7 +30,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Subtotal</span>
-                  <span className="font-medium">${total.toFixed(2)}</span>
+                  <span className="font-medium">{formatCurrency(total)}</span>
                 </div>
                 <div className="flex justify-between text-gray-500">
                   <span>Shipping</span>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { formatCurrency } from '@/app/lib/formatCurrency';
 import { useCart } from '@/components/CartProvider';
 
 const cartImage = (image) => {
@@ -12,7 +13,7 @@ const cartImage = (image) => {
 };
 
 export default function CartPage() {
-  const { items, updateQty, removeItem, clearCart, total, itemCount } = useCart();
+  const { items, addItem, updateQty, removeItem, clearCart, itemCount, total } = useCart();
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900 py-20">
@@ -62,10 +63,11 @@ export default function CartPage() {
                       </button>
                     </div>
                     <p className="text-gray-500 text-sm mb-4">
-                      {item.category}&nbsp;•&nbsp;{item.stock > 0 ? 'In stock' : 'Out of stock'}
+                      {item.category}&nbsp;•&nbsp;
+                      {item.stock > 0 ? 'In stock' : 'Out of stock'}
                     </p>
                     <div className="flex items-center gap-4 mb-4">
-                      <span className="text-xl font-bold">${item.price.toFixed(2)}</span>
+                      <span className="text-xl font-bold">{formatCurrency(item.price)}</span>
                       <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
                         <button
                           onClick={() => updateQty(item._id, item.qty - 1)}
@@ -87,9 +89,9 @@ export default function CartPage() {
                       </div>
                     </div>
                     <p className="text-gray-500 text-sm">
-                      Subtotal: <span className="font-bold text-gray-900">${(
-                        item.price * item.qty
-                      ).toFixed(2)}</span>
+                      Subtotal: <span className="font-bold text-gray-900">
+                        {formatCurrency(item.price * item.qty)}
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -100,16 +102,16 @@ export default function CartPage() {
                 <div className="space-y-4">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-500">Subtotal</span>
-                    <span className="font-semibold">${total.toFixed(2)}</span>
+                    <span className="font-semibold">{formatCurrency(total)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-500">Shipping</span>
-                    <span className="font-semibold">Calculated at checkout</span>
+                    <span className="font-semibold">Free shipping on orders above ₹499</span>
                   </div>
                   <div className="h-px bg-gray-100" />
                   <div className="flex justify-between text-lg font-bold">
                     <span>Total</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>{formatCurrency(total)}</span>
                   </div>
                 </div>
                 <button
@@ -135,4 +137,3 @@ export default function CartPage() {
     </main>
   );
 }
-
