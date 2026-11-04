@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { api } from '@/app/lib/api';
 import { formatCurrency } from '@/app/lib/formatCurrency';
 
 export default function AdminStatsPage() {
@@ -12,13 +11,16 @@ export default function AdminStatsPage() {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    api.getStats().then((res) => {
-      setStats(res.data || {});
-      setLoading(false);
-    }).catch((err) => {
-      setError(err.message);
-      setLoading(false);
-    });
+    fetch('/api/admin/stats')
+      .then((res) => res.json())
+      .then((data) => {
+        setStats(data.data || data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
