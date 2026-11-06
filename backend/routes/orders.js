@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
-const auth = require('../middleware/auth');
+const { auth, admin } = require('../middleware/auth');
 
 // Create order
 router.post('/', auth, async (req, res) => {

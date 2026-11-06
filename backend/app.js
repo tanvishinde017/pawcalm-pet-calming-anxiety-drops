@@ -1,0 +1,24 @@
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const productRoutes = require('./routes/product');
+const contactRoutes = require('./routes/contact');
+const userRoutes = require('./routes/user');
+const { auth, admin } = require('./middleware/auth');
+const errorHandler = require('./middleware/errorHandler');
+
+const app = express();
+app.use(express.json());
+app.use(helmet());
+app.use(cors({ origin: process.env.CORS_ORIGIN || true }));
+app.use(morgan('dev'));
+app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
+app.use('/api/products', productRoutes);
+app.use('/api/contact', contactRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/cart', auth, require('./routes/cart'));
+app.use('/api/orders', auth, require('./routes/orders'));
+app.use('/api/*', (req, res) => res.status(404).json({ message: 'Endpoint not found' }));
+app.use(errorHandler);
+module.exports = app;

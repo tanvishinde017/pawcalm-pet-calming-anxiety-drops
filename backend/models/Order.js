@@ -1,124 +1,32 @@
 const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
+  user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
   items: [
     {
-      product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      image: {
-        type: String,
-      },
-      packSize: {
-        type: String,
-      },
-      price: {
-        type: Number,
-        required: true,
-      }, // Price at purchase time
-      mrp: {
-        type: Number,
-      }, // MRP at purchase time
-      discount: {
-        type: Number,
-        default: 0,
-      },
-      quantity: {
-        type: Number,
-        required: true,
-        min: [1, 'Quantity must be at least 1'],
-        default: 1,
-      },
-      total: {
-        type: Number,
-        required: true,
-      },
+      product: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Product' },
+      name: { type: String, required: true },
+      price: { type: Number, required: true },
+      quantity: { type: Number, required: true, default: 1 },
     },
   ],
-  deliveryAddress: {
-    fullName: {
-      type: String,
-      required: [true, 'Full name is required'],
-    },
-    address: {
-      type: String,
-      required: [true, 'Address is required'],
-    },
-    city: {
-      type: String,
-      required: [true, 'City is required'],
-    },
-    state: {
-      type: String,
-    },
-    pincode: {
-      type: String,
-      match: [/^\d{6}$/, 'PIN code must be 6 digits'],
-    },
-    country: {
-      type: String,
-      default: 'India',
-    },
+  shippingAddress: {
+    fullName: { type: String, required: true },
+    address: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    pincode: { type: String, required: true },
+    country: { type: String, required: true },
   },
-  subtotal: {
-    type: Number,
-    required: true,
-  },
-  shippingCharge: {
-    type: Number,
-    default: 0,
-  },
-  discount: {
-    type: Number,
-    default: 0,
-  },
-  total: {
-    type: Number,
-    required: true,
-  },
-  paymentMethod: {
-    type: String,
-    enum: ['cod', 'razorpay', 'upi', 'card'],
-  },
-  paymentStatus: {
-    type: String,
-    enum: ['pending', 'completed', 'failed', 'refunded'],
-    default: 'pending',
-  },
-  orderStatus: {
-    type: String,
-    enum: ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled', 'return-initiated'],
-    default: 'pending',
-  },
-  orderId: {
-    type: String,
-  },
-  transactionId: {
-    type: String,
-  },
-  notes: {
-    type: String,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  shippingCharge: { type: Number, default: 0 },
+  discount: { type: Number, default: 0 },
+  tax: { type: Number, default: 0 },
+  total: { type: Number, required: true },
+  orderStatus: { type: String, default: 'pending' },
+  paymentStatus: { type: String, default: 'pending' },
+  orderDate: { type: Date, default: Date.now },
+  deliveredAt: { type: Date },
+}, { timestamps: true });
 
 // Index for faster queries
 OrderSchema.index({ user: 1, createdAt: -1 });
@@ -127,29 +35,26 @@ OrderSchema.index({ orderStatus: 1 });
 // Method to calculate totals
 OrderSchema.methods.calculateTotals = function () {
   let subtotal = 0;
-  
+
   this.items.forEach((item) => {
-    subtotal += item.total;
+    subtotal += item.price * item.quantity;
   });
-  
+
   this.subtotal = subtotal;
-  this.shippingCharge = 0; // Will be calculated based on location
-  this.discount = 0; // Applied at checkout
   this.total = subtotal + this.shippingCharge - this.discount;
-  
   return this.total;
-});
+};
 
 // Method to cancel order (if eligible)
 OrderSchema.methods.cancel = async function () {
   if (this.orderStatus === 'delivered' || this.orderStatus === 'return-initiated') {
     return { success: false, message: 'Order cannot be cancelled as it has been delivered' };
   }
-  
+
   this.orderStatus = 'cancelled';
   await this.save();
   return { success: true, message: 'Order cancelled successfully' };
-});
+};
 
 const Order = mongoose.model('Order', OrderSchema);
 

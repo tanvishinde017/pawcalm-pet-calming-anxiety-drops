@@ -48,3 +48,5 @@ mongo_job.out
 mongodb.err
 mongodb.out
 start-mongo.ps1
+
+db_test/

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/Product');
+const { Product } = require('../models/Product');
 const Enquiry = require('../models/Enquiry');
 const sampleProducts = require('../utils/sampleProducts');
 
@@ -17,8 +17,7 @@ const seedProducts = async () => {
   }
 };
 
-// Call seed on route initialization
-seedProducts();
+
 
 router.use((req, res, next) => {
   next();

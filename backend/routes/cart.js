@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Cart = require('../models/Cart');
+const { auth } = require('../middleware/auth');
 
 router.get('/', auth, async (req, res) => {
   try {
@@ -23,7 +24,7 @@ router.post('/add', auth, async (req, res) => {
     }
     
     // Find the product
-    const Product = require('../models/Product');
+    const { Product } = require('../models/Product');
     const product = await Product.findById(productId);
     
     if (!product) {
