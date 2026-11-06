@@ -1,5 +1,5 @@
 import './globals.css'
-import { Nav } from '@/components/ui/Nav'
+import { Nav } from '@/components/ui/nav'
 import { Footer } from '@/components/ui/Footer'
 import { CartProvider } from '@/components/CartProvider'
 
