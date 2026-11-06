@@ -1,7 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+export const metadata = {
+  title: 'About Us | PawCalm',
+  description: 'Learn about PawCalm and our pet wellness mission.',
+  openGraph: { title: 'About Us | PawCalm', description: 'Learn about PawCalm.', type: 'website' },
+  alternates: siteUrl ? { canonical: `${siteUrl}/about` } : undefined,
+};
 export default function AboutPage() {
+
+
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900 py-20">
       <div className="max-w-7xl mx-auto px-4">

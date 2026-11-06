@@ -40,3 +40,4 @@
     transition-duration: 0ms !important;
   }
 }
+*:focus-visible { outline: 2px solid #294C3B; outline-offset: 2px; }
